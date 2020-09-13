@@ -1,3 +1,5 @@
+package Seminar1;
+
 public class task10 {
 
     public static double average(double a, double b) {

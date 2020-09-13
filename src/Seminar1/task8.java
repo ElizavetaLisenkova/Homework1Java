@@ -1,7 +1,8 @@
-public class task7 {
+package Seminar1;
+
+public class task8 {
     public static void main(String[] args) {
-        int a = 2345639;
-        a = a%100;
+        int a = 35;
         System.out.println(a/10);
     }
 }

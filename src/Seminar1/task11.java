@@ -1,3 +1,5 @@
+package Seminar1;
+
 public class task11 {
     public static double geometric(double a, double b) {
         return Math.sqrt(a*b);

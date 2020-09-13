@@ -1,3 +1,5 @@
+package Seminar1;
+
 public class task12 {
     public static void main(String[] args) {
         System.out.println(length(12.3, 3.0, 10.0, 5.4));

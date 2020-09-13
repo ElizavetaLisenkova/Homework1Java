@@ -1,3 +1,5 @@
+package Seminar1;
+
 public class task9 {
     public static void main(String[] args) {
         int a = 2344;
