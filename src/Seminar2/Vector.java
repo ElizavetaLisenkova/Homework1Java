@@ -46,7 +46,7 @@ public class Vector {
 
     }
 
-    public double[] summ(Vector v){
+    public double[] sum(Vector v){
         double [] arr = new double[3];
         arr[0] = this.x + v.x;
         arr[1] = this.y + v.y;
@@ -86,7 +86,7 @@ public class Vector {
         System.out.print("Угол между векторами  ");
         System.out.println(v1.angle(v2));
         System.out.print("Сложение векторов");
-        System.out.println(Arrays.toString(v1.summ(v2)));
+        System.out.println(Arrays.toString(v1.sum(v2)));
         System.out.print("Вычитание векторов");
         System.out.println(Arrays.toString(v1.sub(v2)));
         System.out.print("Массив размером N случайных векторов  ");
