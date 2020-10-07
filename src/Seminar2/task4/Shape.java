@@ -1,8 +1,6 @@
-package Seminar2.task3;
+package Seminar2.task4;
 
-import javax.swing.*;
-
-public class Shape {
+public abstract class Shape {
 
     private double volume;
 

@@ -1,7 +1,8 @@
 package Seminar2;
 
+// TASK 5
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MyArrays {
 

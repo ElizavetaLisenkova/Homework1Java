@@ -1,12 +1,12 @@
-package Seminar2.task3;
+package Seminar2.task4;
 
-public class Box extends Shape{
+public class Box extends Shape {
 
     public Box(double volume) {
         super(volume);
     }
 
-    public boolean add(Shape shape) {
+    public boolean add(Seminar2.task4.Shape shape) {
         if (shape.getVolume() <= this.getVolume()) {
             this.setVolume(this.getVolume()-shape.getVolume());
             System.out.println("Добавлено.  Объем коробки стал: " + this.getVolume());
