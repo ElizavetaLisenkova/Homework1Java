@@ -29,9 +29,9 @@ public class Main {
         weatherServices.put("2", "WeatherBit");
         weatherServices.put("3", "WeatherStack");
 
-        Boolean exit = false;
+        Boolean exit = true;
         System.out.println("Добро пожаловать в консольное приложение.");
-        while (!exit) {
+        while (exit) {
             System.out.printf(
                     "\nВведите номер команды\n\t" +
                             "1: Использовать сервис %s \n\t" +
@@ -40,31 +40,35 @@ public class Main {
                             "4: Использовать сохраненные настройки \n\t" +
                             "0: Выход \n", weatherServices.get("1"), weatherServices.get("2"), weatherServices.get("3"));
 
-            String number = in.nextLine();
 
+            String number = in.nextLine();
             switch (number) {
                 case "1":
                     System.out.println("Загрузка сервиса...");
-                    getWeatherRequest(Number1_Url, "1");
+                    getWeatherRequest(Number1_Url, "1", getCityName());
                     System.out.println("Продолжение работы с приложением: ");
                     break;
                 case "2":
-                    System.out.println("Загрузка сервиса...");
-                    getWeatherRequest(Number2_Url, "2");
+                    getWeatherRequest(Number2_Url, "2", getCityName());
                     System.out.println("Продолжение работы с приложением: ");
                     break;
                 case "3":
-                    System.out.println("Загрузка сервиса...");
-                    getWeatherRequest(Number3_Url, "3");
+                    getWeatherRequest(Number3_Url, "3", getCityName());
                     System.out.println("Продолжение работы с приложением: ");
                     break;
                 case "4":
                     System.out.println("Применяются сохраненные настройки...");
-//                    getWeatherRequest();
+                    HashMap<String, String> map = Saver.readFromFile();
+                    if (map!= null) {
+                        getWeatherRequest(map.get("url"), map.get("number"), map.get("cityName"));
+                    } else {
+                        System.out.println("Рабочие настройки не найдены.");
+                    }
                     System.out.println("Продолжение работы с приложением: ");
+                    break;
                 case "0":
                     System.out.println("Выход из приложения...");
-                    exit = true;
+                    exit = false;
                     break;
                 default:
                     System.out.println("Некорректный номер!");
@@ -73,11 +77,16 @@ public class Main {
         }
     }
 
-
-    public static void getWeatherRequest(String url, String number) {
-        Scanner in = new Scanner(System.in);
+    private static String getCityName() {
         System.out.println("Введите название города на русском или на английском языке");
-        String cityName = in.nextLine();
+        Scanner in2 = new Scanner(System.in);
+        String cityName = in2.nextLine();
+        return cityName;
+    }
+
+
+    public static void getWeatherRequest(String url, String number, String cityName) {
+
         System.out.println("Загрузка данных...");
         HttpURLConnection connection = null;
         try {
@@ -93,9 +102,8 @@ public class Main {
             } else {
                 connection.getErrorStream();
             }
-
             JsonParser.chooseParsing(sb.toString(), number);
-
+            Saver.writeToFile(url, number, cityName);
         } catch (Throwable cause) {
             cause.printStackTrace();
         } finally {
