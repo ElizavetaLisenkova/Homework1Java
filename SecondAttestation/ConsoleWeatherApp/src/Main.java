@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 
 
-
 public class Main {
 
     final static String OpenWeatherApiKey = "eb2cb84a538b7ea88e6f6d6de029c054";
@@ -105,7 +104,7 @@ public class Main {
             JsonParser.chooseParsing(sb.toString(), number);
             Saver.writeToFile(url, number, cityName);
         } catch (Throwable cause) {
-            cause.printStackTrace();
+            System.out.println("Город не найден или отсутствует подключение к интернету.");
         } finally {
             if (connection != null) {
                 connection.disconnect();
